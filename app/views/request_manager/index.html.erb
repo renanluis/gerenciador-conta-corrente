@@ -1,0 +1,19 @@
+<h1>Solicitar visita do gerente</h1>
+<% if @error %>
+<div class="alert-error">
+    <div class="alert-message"><%= @error %></div>
+</div>
+<% end %>
+<% if @success %>
+<div class="alert-success">
+    <div class="alert-message"><%= @success %></div>
+</div>
+<% end %>
+<div class="form">
+<%= form_with url: "/request-manager/create", method: :post do |f| %>
+    <div class="fieldset">
+        <%= f.submit "Confirmar solicitação" %>
+    </div>
+
+<% end %>
+</div>

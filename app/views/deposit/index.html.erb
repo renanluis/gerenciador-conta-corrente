@@ -1,0 +1,23 @@
+<h1>Depósito</h1>
+<% if @error %>
+<div class="alert-error">
+    <div class="alert-message"><%= @error %></div>
+</div>
+<% end %>
+<% if @success %>
+<div class="alert-success">
+    <div class="alert-message"><%= @success %></div>
+</div>
+<% end %>
+<div class="form">
+<%= form_with url: "/deposit/create", method: :post do |f| %>
+    <div class="fieldset">
+        <%= f.label :value, "Digite o valor que deseja depositar (R$):" %>
+        <%= f.number_field :value, required: true, step: 0.01 %>
+    </div>
+    <div class="fieldset">
+        <%= f.submit "Depositar" %>
+    </div>
+
+<% end %>
+</div>

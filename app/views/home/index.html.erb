@@ -1,0 +1,20 @@
+<h2>Conta: <%= @logged_user.account %></h2>
+<h2>VIP: 
+<% if logged_user.vip %>
+    <span class="green-text">Sim</span>
+<% else %>
+    <span class="red-text">Não</span>
+<% end %>
+</h2>
+<h3>Opções: </h3>
+<ol>
+    <li><a href="/balance" title="Ver Saldo">Ver Saldo</a></li>
+    <li><a href="/statement" title="Extrato">Extrato</a></li>
+    <li><a href="/withdraw" title="Saque">Saque</a></li>
+    <li><a href="/deposit" title="Depósito">Depósito</a></li>
+    <li><a href="/transfer" title="Transferência">Transferência</a></li>
+    <% if @logged_user.vip %>
+        <li><a href="/request-manager-visit" title="Solicitar visita do gerente">Solicitar visita do gerente</a></li>
+    <% end %>
+    <li><a href="/logout" title="Trocar de usuário">Trocar de usuário</a></li>
+</ol>

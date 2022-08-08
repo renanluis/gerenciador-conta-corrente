@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  account: 1
+  password: MyText
+  vip: false
+  balance: 1.5
+
+two:
+  account: 1
+  password: MyText
+  vip: false
+  balance: 1.5

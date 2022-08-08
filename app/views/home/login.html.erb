@@ -1,0 +1,21 @@
+<% if @error %>
+<div class="alert-error">
+    <div class="alert-message"><%= @error %></div>
+</div>
+<% end %>
+<div class="form">
+<%= form_with url: "/sessions/create", method: :post do |f| %>
+    <div class="fieldset">
+        <%= f.label :account, "Conta corrente (5 dígitos):" %>
+        <%= f.text_field :account, required: true, pattern: "([0-9]){5,5}", title: "Por favor, digite sua conta corrente no seguinte formato: 99999" %>
+    </div>
+    <div class="fieldset">
+        <%= f.label :password, "Senha (4 dígitos):" %>
+        <%= f.password_field :password, required: true, minlength:4, maxlength: 4 %>
+    </div>
+    <div class="fieldset">
+        <%= f.submit "Entrar" %>
+    </div>
+
+<% end %>
+</div>

@@ -1,0 +1,27 @@
+<h1>Transferência</h1>
+<% if @error %>
+<div class="alert-error">
+    <div class="alert-message"><%= @error %></div>
+</div>
+<% end %>
+<% if @success %>
+<div class="alert-success">
+    <div class="alert-message"><%= @success %></div>
+</div>
+<% end %>
+<div class="form">
+<%= form_with url: "/transfer/create", method: :post do |f| %>
+    <div class="fieldset">
+        <%= f.label :value, "Digite o valor que deseja transferir (R$):" %>
+        <%= f.number_field :value, required: true, step: 0.01 %>
+    </div>
+    <div class="fieldset">
+        <%= f.label :to, "Para qual conta corrente?" %>
+        <%= f.number_field :to, required: true, step: 'any' %>
+    </div>
+    <div class="fieldset">
+        <%= f.submit "Transferir" %>
+    </div>
+
+<% end %>
+</div>

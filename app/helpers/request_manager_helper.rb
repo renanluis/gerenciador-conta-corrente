@@ -1,0 +1,2 @@
+module RequestManagerHelper
+end

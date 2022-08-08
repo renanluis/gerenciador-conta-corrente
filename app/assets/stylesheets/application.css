@@ -1,0 +1,112 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+ @import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+ * {
+    box-sizing: border-box;
+ }
+
+
+ body {
+    margin: 0;
+    padding: 0;
+    font-family: "Lato", sans-serif;
+ }
+
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin-top: 100px;
+}
+
+main .box {
+    width: 100%;
+    max-width: 800px;
+    background-color: #eee;
+    padding: 20px;
+}
+
+main .box .box-title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.red-text {
+    color: #E71D10;
+}
+
+.green-text {
+    color: #15CA12;
+}
+
+.balance-text {
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: #0F418E;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.form input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    outline: none;
+    border:none;
+    border-bottom:1px solid #0F418E;
+    background-color: #ddd;
+}
+
+.form input[type=submit] {
+    max-width: 200px;
+    padding: 15px;
+    border:none;
+    background-color: #0F418E;
+    color: #fff;
+}
+
+.form input[type=submit]:hover {
+    cursor: pointer;
+} 
+
+.alert-error {
+    background-color: #D12206;
+    font-size: 18px;
+    padding: 15px;
+    text-align: center;
+    color: #1F1F1F;
+    margin-bottom: 10px;
+}
+
+.alert-success {
+    background-color: #099406;
+    font-size: 18px;
+    padding: 15px;
+    text-align: center;
+    color: #1F1F1F;
+    margin-bottom: 10px;
+}
+
+
