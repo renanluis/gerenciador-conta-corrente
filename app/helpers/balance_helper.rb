@@ -8,7 +8,7 @@ module BalanceHelper
         return account.balance.floor(2)
     end
     def add_to_balance(value, account)
-        @newBalance = get_balance(account) + value.floor(2)
+        @newBalance = (get_balance(account) + value).floor(2)
         account.balance = @newBalance
         account.due = 0
         if @newBalance < 0
