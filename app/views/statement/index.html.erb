@@ -14,7 +14,7 @@
         <tr>
         <td><%= s.id %></td>
         <td><%= s.desc %></td>
-        <td><%= s.from == @logged_user.account ? "(-"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: "")+")" : "+"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: "") %></td>
+        <td><%= s.from == @logged_user.account ? "(-"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".")+")" : "+"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".") %></td>
         <td><%= s.from > 0 ? s.from : '-' %></td>
         <td><%= s.to > 0 ? s.to : '-' %></td>
         <td><%= s.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
