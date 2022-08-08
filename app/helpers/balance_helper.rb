@@ -7,4 +7,13 @@ module BalanceHelper
         end
         return account.balance
     end
+    def add_to_balance(value, account)
+        @newBalance = get_balance(account) + value
+        account.balance = @newBalance
+        account.due = 0
+        if @newBalance < 0
+          account.due = Time.now().to_i
+        end
+        return account.save
+    end
 end

@@ -34,20 +34,12 @@ class TransferController < ApplicationController
         @error = 'A conta informada não existe.'
         return render 'transfer/index'
       end
-      @newBalance = @logged_user.balance - @value
       @transferTax = 8
       if @logged_user.vip
         @transferTax = 0.008 * @value
       end
-      @newBalance -= @transferTax
-      @senderUpdate = @logged_user.update(balance: @newBalance)
-      @destBalance = get_balance(@getDest)
-      @getDest.balance = @destBalance + @value
-      @getDest.due = 0
-      if @getDest.balance < 0
-        @getDest.due = Time.now.to_i
-      end
-      @destUpdate = @getDest.save
+      @senderUpdate = add_to_balance(-(@value+@transferTax), @logged_user)
+      @destUpdate = add_to_balance(@value, @getDest)
       if !@senderUpdate || !@destUpdate
         @error = 'Houve algum erro ao transferir para essa conta. Tente novamente.'
         return render 'transfer/index'

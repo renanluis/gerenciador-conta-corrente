@@ -21,13 +21,7 @@ class WithdrawController < ApplicationController
           @error = 'Você não pode sacar um valor maior que o seu saldo.'
           return render 'withdraw/index'
       end
-      @newBalance = get_balance(@logged_user) - @value
-      @logged_user.balance = @newBalance
-      if @newBalance < 0
-        @logged_user.due = Time.now.to_i
-      end
-      @update = @logged_user.save
-      if @update
+      if add_to_balance(-@value, @logged_user)
         Statement.create(desc: "Saque", value: @value, from: @logged_user.account, to: 0)
         @success = 'Saque realizado com sucesso.'
         return render 'withdraw/index'

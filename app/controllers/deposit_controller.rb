@@ -16,14 +16,7 @@ class DepositController < ApplicationController
         @error = 'Informe um valor maior que 0.'
         return render 'deposit/index'
       end
-      @newBalance = get_balance(@logged_user) + @value
-      @logged_user.balance = @newBalance
-      @logged_user.due = 0
-      if @newBalance < 0
-        @logged_user.due = Time.now().to_i
-      end
-      @deposit = @logged_user.save
-      if !@deposit
+      if !add_to_balance(@value, @logged_user)
         @error = 'Ocorreu um erro ao tentar depositar na sua conta. Tente novamente.'
         return render 'deposit/index'
       end
