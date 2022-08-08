@@ -3,12 +3,12 @@ module BalanceHelper
         if !account.due.nil? && account.due > 0
             @timeDiff = Time.now.to_i - account.due
             @totalMinutes = (@timeDiff / 60).floor
-            return account.balance * ((1 + 0.001) ** @totalMinutes)
+            account.balance = account.balance * ((1 + 0.001) ** @totalMinutes)
         end
-        return account.balance
+        return account.balance.floor(2)
     end
     def add_to_balance(value, account)
-        @newBalance = get_balance(account) + value
+        @newBalance = get_balance(account) + value.floor(2)
         account.balance = @newBalance
         account.due = 0
         if @newBalance < 0

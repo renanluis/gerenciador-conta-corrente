@@ -12,7 +12,7 @@ class TransferController < ApplicationController
         return render 'transfer/index'
       end
       @to = params[:to].to_i
-      @value = params[:value].to_f
+      @value = params[:value].to_f.floor(2)
       if @to == @logged_user.account
         @error = 'Você não pode transferir para você mesmo.'
         return render 'transfer/index'

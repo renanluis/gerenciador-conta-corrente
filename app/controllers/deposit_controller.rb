@@ -11,7 +11,7 @@ class DepositController < ApplicationController
         @error = 'Preencha o valor que deseja depositar.'
         return render 'deposit/index'
       end
-      @value = params[:value].to_f
+      @value = params[:value].to_f.floor(2)
       if @value <= 0
         @error = 'Informe um valor maior que 0.'
         return render 'deposit/index'

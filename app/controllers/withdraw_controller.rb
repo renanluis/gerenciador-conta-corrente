@@ -12,7 +12,7 @@ class WithdrawController < ApplicationController
         @error = 'Preencha o valor de saque.'
         return render 'withdraw/index'
       end
-      @value = params[:value].to_f
+      @value = params[:value].to_f.floor(2)
       if @value <= 0
         @error = 'Informe um valor maior que 0.'
         return render 'withdraw/index'
