@@ -7,6 +7,27 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <script>
+    window.onload = function() {
+      value = document.getElementById('value');
+      showValue = value.cloneNode(true);
+      showValue.name = 'showValue';
+      showValue.id = 'showValue';
+      showValue.type = 'text';
+      value.parentNode.appendChild(showValue);
+      value.type = 'hidden';
+      showValue.value = 'R$ ';
+      showValue.oninput = function() {
+        this.value = `${ this.value
+				.replace( /\D/g, '' )
+				.replace( /^[0]+/, '' )
+				.replace( /(\d+)(\d{2})$/, '$1,$2' )
+				.replace( /(\d)(?=(\d{3})+\b)/g, '$1.' ) }`;
+        value.value = this.value.replace('.', '').replace(',', '.');
+        this.value = 'R$ '+this.value;
+      };
+    }
+    </script>
   </head>
 
   <body>
