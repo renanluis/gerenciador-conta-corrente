@@ -29,14 +29,18 @@ class TransferController < ApplicationController
         @error = 'Você não pode transferir um valor maior que o seu saldo.'
         return render 'transfer/index'
       end
+      @transferTax = 8
+      if @logged_user.vip
+        @transferTax = (0.008 * @value).floor(2)
+      end
+      if (@value+@transferTax) > @logged_user.balance
+        @error = 'Saldo insuficiente para efetuar o pagamento da taxa de transferência.'
+        return render 'transfer/index'
+      end
       @getDest = Account.find_by(account: @to)
       if @getDest.nil?
         @error = 'A conta informada não existe.'
         return render 'transfer/index'
-      end
-      @transferTax = 8
-      if @logged_user.vip
-        @transferTax = 0.008 * @value
       end
       @senderUpdate = add_to_balance(-(@value+@transferTax), @logged_user)
       @destUpdate = add_to_balance(@value, @getDest)
