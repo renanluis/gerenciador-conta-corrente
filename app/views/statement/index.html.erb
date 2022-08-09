@@ -15,7 +15,13 @@
             <tr>
             <td><%= s.id %></td>
             <td><%= s.desc %></td>
-            <td><%= s.from == @logged_user.account ? "<span class=\"red-text\">(-"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".")+")</span>" : "<span class=\"green-text\">+"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".")+"</span>" %></td>
+            <td>
+                <% if s.from == @logged_user.account %>
+                    <span class="red-text"><%= "(-"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".")+")" %></span>
+                <% else %>
+                    <span class="green-text"><%= "+"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".") %></span>
+                <% end %>
+            </td>
             <td><%= s.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
             <td><%= s.from > 0 ? s.from : '-' %></td>
             <td><%= s.to > 0 ? s.to : '-' %></td>
