@@ -1,27 +1,29 @@
 <h1>Extrato</h1>
 <% if !@statements.empty? %>
-<table>
-    <thead>
-        <th>ID</th>
-        <th>Descrição</th>
-        <th>Valor</th>
-        <th>Data e hora</th>
-        <th>De</th>
-        <th>Para</th>
-    </thead>
-    <tbody>
-    <% @statements.each do |s| %>
-        <tr>
-        <td><%= s.id %></td>
-        <td><%= s.desc %></td>
-        <td><%= s.from == @logged_user.account ? "(-"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".")+")" : "+"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".") %></td>
-        <td><%= s.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
-        <td><%= s.from > 0 ? s.from : '-' %></td>
-        <td><%= s.to > 0 ? s.to : '-' %></td>
-        </tr>
-    <% end %>
-    </tbody>
-</table>
+<div class="table>
+    <table>
+        <thead>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Valor</th>
+            <th>Data e hora</th>
+            <th>De</th>
+            <th>Para</th>
+        </thead>
+        <tbody>
+        <% @statements.each do |s| %>
+            <tr>
+            <td><%= s.id %></td>
+            <td><%= s.desc %></td>
+            <td><%= s.from == @logged_user.account ? "(-"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".")+")" : "+"+number_to_currency(s.value, unit: "R$", separator: ",", delimiter: ".") %></td>
+            <td><%= s.created_at.strftime("%d/%m/%Y %H:%M:%S") %></td>
+            <td><%= s.from > 0 ? s.from : '-' %></td>
+            <td><%= s.to > 0 ? s.to : '-' %></td>
+            </tr>
+        <% end %>
+        </tbody>
+    </table>
+</div>
 <% else %>
     <h2>Nenhuma operação foi realizada, até o momento.</h2>
 <% end %>
