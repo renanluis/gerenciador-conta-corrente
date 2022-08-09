@@ -12,47 +12,49 @@
       var vip = <%= (@logged_user && @logged_user.vip) ? true : false %>;
       <% %>
       value = document.getElementById('value');
-      showValue = value.cloneNode(true);
-      showValue.name = 'showValue';
-      showValue.id = 'showValue';
-      showValue.type = 'text';
-      value.parentNode.appendChild(showValue);
-      value.type = 'hidden';
-      showValue.value = 'R$ ';
-      showValue.oninput = function() {
-        this.value = `${ this.value
-				.replace( /\D/g, '' )
-				.replace( /^[0]+/, '' )
-				.replace( /(\d+)(\d{2})$/, '$1,$2' )
-				.replace( /(\d)(?=(\d{3})+\b)/g, '$1.' ) }`;
-        value.value = this.value.replace('.', '').replace(',', '.');
-        this.value = 'R$ '+this.value;
-        submit = document.querySelector('input[type=submit]');
-        if(submit != null) {
-          switch(submit.value) {
-            case 'Transferir':
-              let transferTaxElement = document.getElementById('transferTax');
-              if(transferTaxElement == null) {
-                transferTaxElement = document.createElement('p');
-                transferTaxElement.id = 'transferTax';
-              }
-              if(value.value == '') {
-                  return transferTaxElement.remove();
-              }
-              let transferTaxValue = 8;
-              if(vip) {
-                transferTaxValue = (0.008 * parseFloat(value.value)).toFixed(2);
-              }
-              var formatter = new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL',
-              });
-              transferTaxElement.innerText = 'Taxa de transferência: '+formatter.format(transferTaxValue);
-              this.before(transferTaxElement);
-            break;
+      if(value != null) {
+        showValue = value.cloneNode(true);
+        showValue.name = 'showValue';
+        showValue.id = 'showValue';
+        showValue.type = 'text';
+        value.parentNode.appendChild(showValue);
+        value.type = 'hidden';
+        showValue.value = 'R$ ';
+        showValue.oninput = function() {
+          this.value = `${ this.value
+          .replace( /\D/g, '' )
+          .replace( /^[0]+/, '' )
+          .replace( /(\d+)(\d{2})$/, '$1,$2' )
+          .replace( /(\d)(?=(\d{3})+\b)/g, '$1.' ) }`;
+          value.value = this.value.replace('.', '').replace(',', '.');
+          this.value = 'R$ '+this.value;
+          submit = document.querySelector('input[type=submit]');
+          if(submit != null) {
+            switch(submit.value) {
+              case 'Transferir':
+                let transferTaxElement = document.getElementById('transferTax');
+                if(transferTaxElement == null) {
+                  transferTaxElement = document.createElement('p');
+                  transferTaxElement.id = 'transferTax';
+                }
+                if(value.value == '') {
+                    return transferTaxElement.remove();
+                }
+                let transferTaxValue = 8;
+                if(vip) {
+                  transferTaxValue = (0.008 * parseFloat(value.value)).toFixed(2);
+                }
+                var formatter = new Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                });
+                transferTaxElement.innerText = 'Taxa de transferência: '+formatter.format(transferTaxValue);
+                this.before(transferTaxElement);
+              break;
+            }
           }
-        }
-      };
+        };
+      }
     }
     </script>
   </head>
