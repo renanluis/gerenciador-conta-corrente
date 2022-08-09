@@ -1,9 +1,10 @@
 module BalanceHelper
     def get_balance(account)
-        if !account.due.nil? && account.due > 0
+        if !account.due.nil? && account.due > 0 && account.balance.negative?
             @timeDiff = Time.now.to_i - account.due
             @totalMinutes = (@timeDiff / 60).floor
-            account.balance = account.balance * ((1 + 0.001) ** @totalMinutes)
+            account.balance = (account.balance.abs * ((1 + 0.001) ** @totalMinutes)).floor(2)
+            return -account.balance
         end
         return account.balance.floor(2)
     end
