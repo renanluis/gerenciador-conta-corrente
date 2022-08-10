@@ -1,2 +1,2 @@
 <h1>Saldo</h1>
-<h2>Seu saldo atual é: <%= number_to_currency(@logged_user.balance.floor(2), unit: "R$", separator: ",", delimiter: ".", precision: 2) %></h2>
+<h2>Seu saldo atual é: <br/><%= number_to_currency(@logged_user.balance.floor(2), unit: "R$", separator: ",", delimiter: ".", precision: 2) %></h2>
